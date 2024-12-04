@@ -40,5 +40,23 @@ def prepare_image(img):
     img_array = np.expand_dims(img_array, axis=0)  
     return img_array
 
+def verify_token(token):
+    """
+    Verifies that the given token matches the SECRET_TOKEN.
+    
+    Parameters
+    ----------
+    token : str
+        The token to verify
+    
+    Returns
+    -------
+    bool
+        True if the token is valid, False if not
+    """
+    if token != SECRET_TOKEN:
+        return False
+    return True
+
 if __name__ == '__main__':
     app.run(debug=True)
