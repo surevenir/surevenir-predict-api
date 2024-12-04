@@ -58,5 +58,81 @@ def verify_token(token):
         return False
     return True
 
+@app.route('/predict', methods=['POST'])
+def predict():
+    
+    """
+    Handles image prediction requests by verifying the authorization token and processing the uploaded image file.
+    
+    This function expects a POST request with a form-data payload containing an 'image' file and a 'token'.
+    It verifies the token against a pre-defined SECRET_TOKEN and processes the image for prediction using a 
+    pre-loaded deep learning model. If successful, it returns the predicted class and accuracy. Otherwise, 
+    it returns an appropriate error message.
+    
+    Returns
+    -------
+    flask.Response
+        A JSON response containing the prediction result if successful, or an error message if not.
+    """
+    token = request.form.get('token')
+
+    
+    if not token:
+        return jsonify({
+            "success": "false", 
+            "message": "No authorization token"
+        })
+    
+    if not verify_token(token):
+        return jsonify({
+            "success": "false", 
+            "message": "Invalid authorization token"
+        })
+    
+    if 'image' not in request.files:
+        return jsonify({
+            "success": "false", 
+            "message": "No file part"
+        })
+    
+    file = request.files['image']
+    
+    if file.filename == '':
+        return jsonify({
+            "success": "false", 
+            "message": "No selected image"
+        })
+    
+    try:
+        
+        img = Image.open(io.BytesIO(file.read()))
+        
+        
+        img_array = prepare_image(img)
+        
+        
+        predictions = model.predict(img_array)
+        
+        
+        predicted_class_index = np.argmax(predictions)
+        predicted_class = class_names[predicted_class_index]
+        accuracy = float(predictions[0][predicted_class_index])  
+        
+        return jsonify({
+            "success": "true",
+            "message": "Model is predicted successfully",
+            "data": {
+                "result": predicted_class,
+                "accuration": round(accuracy, 4),
+            }
+        })
+    
+    except Exception as e:
+        print(f"Error: {e}")  
+        return jsonify({
+            "success": "false",
+            "message": "An error occurred while making the prediction."
+        })
+
 if __name__ == '__main__':
     app.run(debug=True)
