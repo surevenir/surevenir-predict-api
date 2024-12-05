@@ -1,8 +1,10 @@
-Flask
-numpy
-Pillow
-python-dotenv
-tensorflow==2.15.1
+Flask==3.0.0
+numpy==1.26.2
+Pillow==10.1.0
+python-dotenv==1.0.1
+tensorflow==2.15.0
 keras==2.15.0
-tensorflow_intel
-tf_nightly_intel==2.19.0.dev20241007
+scikit-image==0.24.0
+scikit-learn==1.5.0
+fastapi==0.114.0
+pandas==2.2.2
