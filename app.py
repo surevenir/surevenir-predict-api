@@ -17,7 +17,7 @@ class_names = [
     "Tridatu Bracelet", "Udeng (Balinese Headgear)", "Wall Decoration", "Wooden Earrings", "Woven Bag"
 ]
 
-model = tf.keras.models.load_model('./model/model.keras')
+model = tf.keras.models.load_model('./model/model-souvenir-balii.keras')
 
 app = Flask(__name__)
 
