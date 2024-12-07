@@ -6,6 +6,7 @@ import io
 import os
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
 SECRET_TOKEN = os.getenv("SECRET_TOKEN")
@@ -17,6 +18,7 @@ class_names = [
     "Tridatu Bracelet", "Udeng (Balinese Headgear)", "Wall Decoration", "Wooden Earrings", "Woven Bag"
 ]
 
+# model = load_model('./model.h5')
 model = tf.keras.models.load_model('./model/model-souvenir-balii.keras')
 
 app = Flask(__name__)
