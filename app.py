@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 SECRET_TOKEN = os.getenv("SECRET_TOKEN")
+print(SECRET_TOKEN)
 
 class_names = [
     "Aromatherapy Candle", "Balinese Topeng", "Barong T-shirt", "Beach Hat Bali", "Beach Sarong",
@@ -17,7 +18,8 @@ class_names = [
     "Tridatu Bracelet", "Udeng (Balinese Headgear)", "Wall Decoration", "Wooden Earrings", "Woven Bag"
 ]
 
-model = tf.keras.models.load_model('./model/model-souvenir-balii.keras')
+model = tf.keras.models.load_model('model-surevenir.h5')
+print("Model loaded with custom objects")
 
 app = Flask(__name__)
 
@@ -54,6 +56,7 @@ def verify_token(token):
     bool
         True if the token is valid, False if not
     """
+    print(token)
     if token != SECRET_TOKEN:
         return False
     return True
@@ -135,4 +138,4 @@ def predict():
         })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))

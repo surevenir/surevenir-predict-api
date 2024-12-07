@@ -1,5 +1,5 @@
 # Gunakan image dasar Python
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 # Set direktori kerja di dalam container
 WORKDIR /app
@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Tentukan port yang digunakan oleh aplikasi
-EXPOSE 8080
+EXPOSE 5000
 
 # Tentukan command untuk menjalankan aplikasi
-CMD ["python", "app.py"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app:app"]
