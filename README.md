@@ -13,13 +13,13 @@ This is a Flask-based API for classifying Balinese souvenirs using a pre-trained
 ## Project Structure
 
 ```
-├── app.py # Main Flask application
-├── model/ # Folder containing the machine learning model
-├── requirements.txt # Python dependencies
-├── Dockerfile # Configuration for Docker containerization
-├── cloudbuild.yaml # Google Cloud Build configuration
-├── .env # Environment variables (e.g., SECRET_TOKEN)
-└── README.md # Project documentation
+├── app.py             # Main Flask application
+├── model/             # Folder containing the machine learning model
+├── requirements.txt   # Python dependencies
+├── Dockerfile         # Configuration for Docker containerization
+├── cloudbuild.yaml    # Google Cloud Build configuration
+├── .env               # Environment variables (e.g., SECRET_TOKEN)
+└── README.md          # Project documentation
 ```
 
 ## API Endpoints
@@ -38,7 +38,6 @@ This is a Flask-based API for classifying Balinese souvenirs using a pre-trained
 - `success`: Indicates whether the prediction was successful.
 - `message`: Describes the result.
 - `data`: Contains the predicted class and accuracy.
-
 
 ## Getting Started
 
