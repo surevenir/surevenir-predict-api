@@ -18,7 +18,7 @@ class_names = [
     "Tridatu Bracelet", "Udeng (Balinese Headgear)", "Wall Decoration", "Wooden Earrings", "Woven Bag"
 ]
 
-model = tf.keras.models.load_model('model-surevenir.h5')
+model = tf.keras.models.load_model('./model/model-surevenir.h5')
 print("Model loaded with custom objects")
 
 app = Flask(__name__)
